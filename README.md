@@ -22,7 +22,7 @@ This isn't just another shell. It's your streamlined execution layer.
 git clone https://github.com/xPAlien/do-the-shell.git
 
 # Enter the project directory
-cd justdo>
+cd do-the-shell
 
 # Install dependencies
 npm install  # or yarn install
