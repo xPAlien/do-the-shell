@@ -8,48 +8,57 @@ All colors MUST be HSL.
 
 @layer base {
   :root {
-    /* Terminal dark theme - graphite gray background */
-    --background: 210 10% 10%;
-    --foreground: 0 0% 92%;
+    /* Industrial dev-tool theme - graphite gray with cybermint accents */
+    --background: 210 6% 14%;
+    --foreground: 0 0% 95%;
 
-    --card: 210 10% 12%;
-    --card-foreground: 0 0% 92%;
+    --card: 210 6% 16%;
+    --card-foreground: 0 0% 95%;
 
-    --popover: 210 10% 10%;
-    --popover-foreground: 0 0% 92%;
+    --popover: 210 6% 14%;
+    --popover-foreground: 0 0% 95%;
 
-    /* Neon green primary */
-    --primary: 156 100% 50%;
-    --primary-foreground: 210 10% 10%;
+    /* Cybermint primary */
+    --primary: 152 100% 71%;
+    --primary-foreground: 210 6% 14%;
 
-    --secondary: 210 10% 20%;
-    --secondary-foreground: 0 0% 92%;
+    --secondary: 210 6% 22%;
+    --secondary-foreground: 0 0% 95%;
 
-    --muted: 210 10% 15%;
+    --muted: 210 6% 18%;
     --muted-foreground: 0 0% 65%;
 
-    --accent: 156 100% 50%;
-    --accent-foreground: 210 10% 10%;
+    /* Dim cyan accent */
+    --accent: 151 60% 54%;
+    --accent-foreground: 210 6% 14%;
 
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 0 0% 98%;
+    /* Faded amber for alerts */
+    --destructive: 41 70% 70%;
+    --destructive-foreground: 210 6% 14%;
 
-    --border: 210 10% 20%;
-    --input: 210 10% 20%;
-    --ring: 156 100% 50%;
+    --border: 210 6% 22%;
+    --input: 210 6% 22%;
+    --ring: 152 100% 71%;
 
-    --radius: 0.375rem;
+    --radius: 0.125rem;
 
-    /* Custom terminal colors */
-    --terminal-bg: 210 10% 10%;
-    --terminal-green: 156 100% 50%;
-    --terminal-text: 0 0% 92%;
+    /* Custom industrial colors */
+    --graphite: 210 6% 14%;
+    --cybermint: 152 100% 71%;
+    --dim-cyan: 151 60% 54%;
+    --soft-white: 0 0% 95%;
+    --amber-alert: 41 70% 70%;
+    
+    /* Terminal colors */
+    --terminal-bg: 210 6% 14%;
+    --terminal-green: 145 100% 77%;
+    --terminal-text: 0 0% 95%;
     --terminal-muted: 0 0% 65%;
-    --terminal-border: 210 10% 20%;
+    --terminal-border: 210 6% 22%;
     
     /* Glow effects */
-    --glow-green: 156 100% 50%;
-    --glow-green-soft: 156 80% 40%;
+    --glow-cybermint: 152 100% 71%;
+    --glow-dim-cyan: 151 60% 54%;
   }
 }
 
@@ -59,39 +68,93 @@ All colors MUST be HSL.
   }
 
   body {
-    @apply bg-background text-foreground font-mono;
+    @apply bg-background text-foreground font-sans;
   }
 }
 
 @layer utilities {
-  @keyframes blink {
-    0%, 50% { opacity: 1; }
-    51%, 100% { opacity: 0; }
-  }
-
-  @keyframes glow {
+  @keyframes ripple-wave {
     0%, 100% { 
-      box-shadow: 0 0 20px hsl(var(--terminal-green) / 0.3);
+      transform: translateY(0px); 
+      opacity: 0.4; 
     }
     50% { 
-      box-shadow: 0 0 30px hsl(var(--terminal-green) / 0.6);
+      transform: translateY(-4px); 
+      opacity: 1; 
     }
   }
 
-  @keyframes pulse-dot {
-    0%, 100% { opacity: 0.4; }
-    50% { opacity: 1; }
+  @keyframes pulse-line {
+    0%, 100% { 
+      opacity: 0.3; 
+      width: 2px; 
+    }
+    50% { 
+      opacity: 1; 
+      width: 8px; 
+    }
   }
 
-  .cursor-blink {
-    animation: blink 1s step-end infinite;
+  @keyframes diffused-glow {
+    0%, 100% { 
+      box-shadow: 0 0 30px hsl(var(--cybermint) / 0.15),
+                  inset 0 0 20px hsl(var(--cybermint) / 0.05);
+    }
+    50% { 
+      box-shadow: 0 0 50px hsl(var(--cybermint) / 0.25),
+                  inset 0 0 30px hsl(var(--cybermint) / 0.08);
+    }
   }
 
-  .glow-green {
-    animation: glow 2s ease-in-out infinite;
+  @keyframes background-shift {
+    0%, 100% { 
+      transform: translate(0, 0); 
+    }
+    50% { 
+      transform: translate(2px, 2px); 
+    }
+  }
+
+  .ripple-wave {
+    animation: ripple-wave 1.2s ease-in-out infinite;
+  }
+
+  .pulse-line {
+    animation: pulse-line 1.5s ease-in-out infinite;
+  }
+
+  .diffused-glow {
+    animation: diffused-glow 3s ease-in-out infinite;
   }
 
   .terminal-shadow {
-    box-shadow: 0 0 40px hsl(var(--terminal-green) / 0.15);
+    box-shadow: 0 0 40px hsl(var(--cybermint) / 0.12),
+                inset 0 1px 0 hsl(var(--soft-white) / 0.02);
+  }
+
+  .matte-reflection {
+    position: relative;
+  }
+
+  .matte-reflection::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 40%;
+    background: linear-gradient(180deg, hsl(var(--soft-white) / 0.02) 0%, transparent 100%);
+    pointer-events: none;
+    border-radius: inherit;
+  }
+
+  .industrial-border {
+    border: 1px solid hsl(var(--border));
+    transition: all 0.3s ease;
+  }
+
+  .industrial-border:hover {
+    border-color: hsl(var(--cybermint) / 0.3);
+    box-shadow: 0 0 20px hsl(var(--cybermint) / 0.15);
   }
 }

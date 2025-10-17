@@ -9,16 +9,16 @@ interface FeatureCardProps {
 
 export const FeatureCard = ({ icon: Icon, title, description, isPremium }: FeatureCardProps) => {
   return (
-    <div className="group p-6 rounded-lg bg-card border border-terminal-border hover:border-primary/50 transition-all duration-300">
+    <div className="group p-6 rounded-sm bg-card border industrial-border matte-reflection transition-all duration-300">
       <div className="flex items-start gap-4">
-        <div className={`p-3 rounded-lg ${isPremium ? 'bg-primary/10 glow-green' : 'bg-muted'}`}>
-          <Icon className={`w-6 h-6 ${isPremium ? 'text-primary' : 'text-muted-foreground'}`} />
+        <div className={`p-3 rounded-sm ${isPremium ? 'bg-primary/10' : 'bg-muted/50'} transition-all duration-300 ${isPremium ? 'group-hover:shadow-[0_0_20px_hsl(var(--cybermint)/0.2)]' : ''}`}>
+          <Icon className={`w-6 h-6 ${isPremium ? 'text-primary' : 'text-muted-foreground'} transition-colors`} />
         </div>
         <div className="flex-1">
-          <div className="flex items-center gap-2 mb-2">
-            <h3 className="text-lg font-semibold text-foreground">{title}</h3>
+          <div className="flex items-center gap-2.5 mb-2">
+            <h3 className="text-lg font-display font-semibold text-foreground">{title}</h3>
             {isPremium && (
-              <span className="text-xs px-2 py-0.5 rounded-full bg-primary/20 text-primary border border-primary/30">
+              <span className="text-[10px] px-2 py-0.5 rounded-sm bg-primary/10 text-primary border border-primary/20 font-display tracking-wide">
                 PRO
               </span>
             )}

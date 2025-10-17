@@ -6,10 +6,10 @@ interface TerminalLine {
 }
 
 const demoSequence: TerminalLine[] = [
-  { type: "prompt", content: "%" },
+  { type: "prompt", content: "$" },
   { type: "command", content: "ipconfig" },
   { type: "error", content: "bash: ipconfig: command not found" },
-  { type: "prompt", content: "%" },
+  { type: "prompt", content: "$" },
   { type: "command", content: "do ipconfig" },
   { type: "thinking", content: "do is thinking..." },
   { type: "output", content: "→ ifconfig" },
@@ -40,48 +40,51 @@ export const TerminalWindow = () => {
   }, [currentIndex]);
 
   return (
-    <div className="w-full max-w-3xl mx-auto terminal-shadow rounded-lg overflow-hidden border border-terminal-border">
+    <div className="w-full max-w-3xl mx-auto terminal-shadow rounded-sm overflow-hidden border border-terminal-border matte-reflection diffused-glow">
       {/* Terminal Header */}
-      <div className="bg-muted px-4 py-2 flex items-center gap-2 border-b border-terminal-border">
+      <div className="bg-muted/50 px-4 py-2.5 flex items-center gap-2 border-b border-terminal-border/50 backdrop-blur-sm">
         <div className="flex gap-1.5">
-          <div className="w-3 h-3 rounded-full bg-red-500/80"></div>
-          <div className="w-3 h-3 rounded-full bg-yellow-500/80"></div>
-          <div className="w-3 h-3 rounded-full bg-green-500/80"></div>
+          <div className="w-2.5 h-2.5 rounded-full bg-muted-foreground/20"></div>
+          <div className="w-2.5 h-2.5 rounded-full bg-muted-foreground/20"></div>
+          <div className="w-2.5 h-2.5 rounded-full bg-muted-foreground/20"></div>
         </div>
-        <span className="text-sm text-muted-foreground ml-2">bash</span>
+        <span className="text-xs text-muted-foreground ml-2 font-mono">bash</span>
       </div>
 
       {/* Terminal Content */}
-      <div className="bg-card p-6 min-h-[300px] font-mono text-sm">
-        {lines.map((line, index) => (
-          <div key={index} className="mb-1">
-            {line.type === "prompt" && (
-              <span className="text-primary">% </span>
-            )}
-            {line.type === "command" && (
-              <span className="text-foreground">{line.content}</span>
-            )}
-            {line.type === "error" && (
-              <span className="text-destructive">{line.content}</span>
-            )}
-            {line.type === "thinking" && (
-              <span className="text-muted-foreground italic flex items-center gap-2">
-                {line.content}
-                <span className="flex gap-1">
-                  <span className="inline-block w-1 h-1 bg-primary rounded-full animate-pulse" style={{ animationDelay: '0ms' }}></span>
-                  <span className="inline-block w-1 h-1 bg-primary rounded-full animate-pulse" style={{ animationDelay: '200ms' }}></span>
-                  <span className="inline-block w-1 h-1 bg-primary rounded-full animate-pulse" style={{ animationDelay: '400ms' }}></span>
+      <div className="bg-card p-8 min-h-[320px] font-mono text-sm relative">
+        <div className="absolute inset-0 bg-gradient-to-b from-primary/[0.02] to-transparent pointer-events-none"></div>
+        <div className="relative">
+          {lines.map((line, index) => (
+            <div key={index} className="mb-1.5">
+              {line.type === "prompt" && (
+                <span className="text-primary">$ </span>
+              )}
+              {line.type === "command" && (
+                <span className="text-foreground">{line.content}</span>
+              )}
+              {line.type === "error" && (
+                <span className="text-destructive">{line.content}</span>
+              )}
+              {line.type === "thinking" && (
+                <span className="text-muted-foreground italic flex items-center gap-3">
+                  {line.content}
+                  <span className="flex gap-1.5">
+                    <span className="inline-block w-1.5 h-1.5 bg-primary rounded-full ripple-wave"></span>
+                    <span className="inline-block w-1.5 h-1.5 bg-primary rounded-full ripple-wave" style={{ animationDelay: '0.2s' }}></span>
+                    <span className="inline-block w-1.5 h-1.5 bg-primary rounded-full ripple-wave" style={{ animationDelay: '0.4s' }}></span>
+                  </span>
                 </span>
-              </span>
-            )}
-            {line.type === "output" && (
-              <span className="text-primary font-medium">{line.content}</span>
-            )}
-          </div>
-        ))}
-        {currentIndex < demoSequence.length && (
-          <span className="inline-block w-2 h-4 bg-primary cursor-blink ml-1"></span>
-        )}
+              )}
+              {line.type === "output" && (
+                <span className="text-primary font-medium">{line.content}</span>
+              )}
+            </div>
+          ))}
+          {currentIndex < demoSequence.length && (
+            <span className="inline-block h-4 bg-primary pulse-line ml-1 rounded-sm"></span>
+          )}
+        </div>
       </div>
     </div>
   );

@@ -11,34 +11,34 @@ interface PricingCardProps {
 
 export const PricingCard = ({ tier, price, description, features, highlighted }: PricingCardProps) => {
   return (
-    <div className={`p-8 rounded-lg border transition-all duration-300 ${
+    <div className={`p-8 rounded-sm border transition-all duration-300 matte-reflection ${
       highlighted 
-        ? 'bg-card border-primary shadow-lg shadow-primary/20 scale-105' 
-        : 'bg-card border-terminal-border hover:border-primary/30'
+        ? 'bg-card border-primary/40 shadow-[0_0_30px_hsl(var(--cybermint)/0.15)]' 
+        : 'bg-card industrial-border'
     }`}>
-      <div className="mb-6">
-        <h3 className="text-2xl font-display font-bold text-foreground mb-2">{tier}</h3>
-        <div className="flex items-baseline gap-2 mb-3">
+      <div className="mb-8">
+        <h3 className="text-2xl font-display font-bold text-foreground mb-3">{tier}</h3>
+        <div className="flex items-baseline gap-2 mb-4">
           <span className="text-4xl font-display font-bold text-primary">{price}</span>
-          {price !== "Free" && <span className="text-muted-foreground">/month</span>}
+          {price !== "Free" && <span className="text-muted-foreground text-sm">/month</span>}
         </div>
         <p className="text-sm text-muted-foreground">{description}</p>
       </div>
 
-      <ul className="space-y-3 mb-8">
+      <ul className="space-y-3.5 mb-10">
         {features.map((feature, index) => (
           <li key={index} className="flex items-start gap-3">
-            <Check className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
-            <span className="text-sm text-foreground">{feature}</span>
+            <Check className="w-4 h-4 text-primary flex-shrink-0 mt-0.5" />
+            <span className="text-sm text-foreground leading-relaxed">{feature}</span>
           </li>
         ))}
       </ul>
 
       <Button 
-        className={`w-full ${
+        className={`w-full rounded-sm font-display ${
           highlighted 
-            ? 'bg-primary text-primary-foreground hover:bg-primary/90 glow-green' 
-            : 'bg-muted text-foreground hover:bg-muted/80'
+            ? 'bg-primary text-primary-foreground hover:bg-primary/90 shadow-[0_0_20px_hsl(var(--cybermint)/0.2)] hover:shadow-[0_0_30px_hsl(var(--cybermint)/0.3)]' 
+            : 'bg-muted/50 text-foreground hover:bg-muted border border-border'
         }`}
       >
         {highlighted ? 'Get Started' : 'Start Free'}
