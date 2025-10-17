@@ -1,5 +1,5 @@
 # ![justdo>](public/justdo-logo-readme.png)  
-### _"Just do the shell."_  
+### _"justdo>"_  
 
 **do-the-shell** is a minimal, fast, and futuristic command-line interface designed for developers who want to execute, automate, and build — without distractions.  
 This isn't just another shell. It's your streamlined execution layer.
