@@ -193,7 +193,7 @@ const Index = () => {
         <div className="max-w-6xl mx-auto">
           <div className="flex flex-col md:flex-row items-center justify-between gap-6">
             <div className="flex items-center gap-3">
-              <img src={doLogo} alt="do>" className="h-7 w-auto opacity-80" />
+              <img src={justdoLogo} alt="justdo>" className="h-7 w-auto opacity-80" />
               <span className="text-muted-foreground text-sm font-sans">AI that knows your shell.</span>
             </div>
             
