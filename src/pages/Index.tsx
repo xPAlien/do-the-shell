@@ -22,7 +22,7 @@ const Index = () => {
             <img 
               src={justdoLogo} 
               alt="justdo>" 
-              className="h-32 md:h-48 w-auto drop-shadow-[0_0_30px_hsl(var(--primary)/0.3)] hover:drop-shadow-[0_0_40px_hsl(var(--primary)/0.4)] transition-all"
+              className="h-56 md:h-72 w-auto drop-shadow-[0_0_30px_hsl(var(--primary)/0.3)] hover:drop-shadow-[0_0_40px_hsl(var(--primary)/0.4)] transition-all"
             />
           </div>
           
