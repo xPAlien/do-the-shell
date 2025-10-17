@@ -20,7 +20,7 @@ const Index = () => {
             <img 
               src={doLogo} 
               alt="do>" 
-              className="h-20 w-auto transition-all duration-300 drop-shadow-[0_0_20px_hsl(var(--cybermint)/0.3)] group-hover:drop-shadow-[0_0_30px_hsl(var(--cybermint)/0.5)]" 
+              className="h-32 w-auto transition-all duration-300 drop-shadow-[0_0_20px_hsl(var(--cybermint)/0.3)] group-hover:drop-shadow-[0_0_30px_hsl(var(--cybermint)/0.5)]" 
             />
           </div>
           
