@@ -44,6 +44,14 @@ export const TerminalWindow = () => {
   const handleCommand = (e: KeyboardEvent<HTMLInputElement>) => {
     if (e.key === "Enter" && userInput.trim()) {
       const command = userInput.trim();
+      
+      // Handle 'clear' command
+      if (command === "clear") {
+        setLines([]);
+        setUserInput("");
+        return;
+      }
+      
       setLines((prev) => [
         ...prev,
         { type: "prompt", content: "$" },
