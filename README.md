@@ -1,7 +1,7 @@
 # ![justdo>](public/justdo-logo-readme.png)  
 ### _"justdo>"_  
 
-**do-the-shell** is a minimal, fast, and futuristic command-line interface designed for developers who want to execute, automate, and build — without distractions.  
+**justdo>** is a minimal, fast, and futuristic command-line interface designed for developers who want to execute, automate, and build — without distractions.  
 This isn't just another shell. It's your streamlined execution layer.
 
 ---
@@ -22,7 +22,7 @@ This isn't just another shell. It's your streamlined execution layer.
 git clone https://github.com/xPAlien/do-the-shell.git
 
 # Enter the project directory
-cd do-the-shell
+cd justdo>
 
 # Install dependencies
 npm install  # or yarn install
@@ -36,7 +36,7 @@ npm start
 ## 💡 Usage
 
 ```bash
-# Launch do-the-shell
+# Launch justdo>
 justdo>
 
 # Execute commands seamlessly
@@ -51,7 +51,7 @@ justdo> deploy --prod && notify
 ## 🧠 Philosophy
 > "Execution is everything. Just do>"
 
-**do-the-shell** embraces simplicity, speed, and control.  
+**justdo>** embraces simplicity, speed, and control.  
 It's for those who value action over friction — command, build, deploy — *just do>*.
 
 ---
