@@ -18,11 +18,11 @@ const Index = () => {
         <div className="absolute inset-0 bg-gradient-to-b from-primary/[0.03] via-transparent to-transparent pointer-events-none"></div>
         
         <div className="relative z-10 max-w-6xl mx-auto text-center mb-12">
-          <div className="mb-12 flex justify-center">
+          <div className="mb-6 flex justify-center">
             <img 
               src={justdoLogo} 
               alt="justdo>" 
-              className="h-32 md:h-48 w-auto drop-shadow-[0_0_30px_hsl(var(--primary)/0.3)] hover:drop-shadow-[0_0_40px_hsl(var(--primary)/0.4)] transition-all"
+              className="h-48 md:h-64 w-auto drop-shadow-[0_0_30px_hsl(var(--primary)/0.3)] hover:drop-shadow-[0_0_40px_hsl(var(--primary)/0.4)] transition-all"
             />
           </div>
           
