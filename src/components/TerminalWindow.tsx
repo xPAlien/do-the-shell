@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, KeyboardEvent } from "react";
 
 interface TerminalLine {
   type: "prompt" | "command" | "output" | "error" | "thinking";
@@ -19,13 +19,14 @@ const demoSequence: TerminalLine[] = [
 export const TerminalWindow = () => {
   const [lines, setLines] = useState<TerminalLine[]>([]);
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [isInteractive, setIsInteractive] = useState(false);
+  const [userInput, setUserInput] = useState("");
 
   useEffect(() => {
     if (currentIndex >= demoSequence.length) {
       const timer = setTimeout(() => {
-        setLines([]);
-        setCurrentIndex(0);
-      }, 3000);
+        setIsInteractive(true);
+      }, 2000);
       return () => clearTimeout(timer);
     }
 
@@ -39,6 +40,58 @@ export const TerminalWindow = () => {
 
     return () => clearTimeout(timer);
   }, [currentIndex]);
+
+  const handleCommand = (e: KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === "Enter" && userInput.trim()) {
+      const command = userInput.trim();
+      setLines((prev) => [
+        ...prev,
+        { type: "prompt", content: "$" },
+        { type: "command", content: command }
+      ]);
+
+      // Simulate command responses
+      setTimeout(() => {
+        if (command === "ipconfig") {
+          setLines((prev) => [
+            ...prev,
+            { type: "error", content: "bash: ipconfig: command not found" },
+            { type: "output", content: "💡 Try: do ipconfig" }
+          ]);
+        } else if (command === "do ipconfig") {
+          setLines((prev) => [
+            ...prev,
+            { type: "thinking", content: "do is thinking..." }
+          ]);
+          setTimeout(() => {
+            setLines((prev) => [
+              ...prev,
+              { type: "output", content: "→ ifconfig" },
+              { type: "output", content: "lo0: flags=8049<UP,LOOPBACK,RUNNING>" }
+            ]);
+          }, 1000);
+        } else if (command.startsWith("do ")) {
+          setLines((prev) => [
+            ...prev,
+            { type: "thinking", content: "do is thinking..." }
+          ]);
+          setTimeout(() => {
+            setLines((prev) => [
+              ...prev,
+              { type: "output", content: `✓ Understood: ${command.substring(3)}` }
+            ]);
+          }, 1000);
+        } else {
+          setLines((prev) => [
+            ...prev,
+            { type: "output", content: `Try prefixing with 'do' for AI assistance` }
+          ]);
+        }
+      }, 100);
+
+      setUserInput("");
+    }
+  };
 
   return (
     <div className="w-full max-w-3xl mx-auto terminal-shadow rounded-sm overflow-hidden border border-terminal-border matte-reflection diffused-glow">
@@ -82,8 +135,22 @@ export const TerminalWindow = () => {
               )}
             </div>
           ))}
-          {currentIndex < demoSequence.length && (
+          {!isInteractive && currentIndex < demoSequence.length && (
             <span className="inline-block h-4 bg-primary pulse-line ml-1 rounded-sm"></span>
+          )}
+          {isInteractive && (
+            <div className="flex items-center mt-2">
+              <span className="text-primary">$ </span>
+              <input 
+                type="text"
+                value={userInput}
+                onChange={(e) => setUserInput(e.target.value)}
+                onKeyDown={handleCommand}
+                className="flex-1 bg-transparent border-none outline-none text-foreground ml-1 font-mono"
+                placeholder="Try typing 'ipconfig' or 'do ipconfig'"
+                autoFocus
+              />
+            </div>
           )}
         </div>
       </div>

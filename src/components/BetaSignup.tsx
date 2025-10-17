@@ -51,7 +51,7 @@ export const BetaSignup = () => {
     >
       <div className="text-center mb-6">
         <h3 className="text-2xl font-display font-bold text-foreground mb-3">
-          🧠 Want to unlock AI Mode?
+          🧠 Unlock AI Mode.
         </h3>
         <p className="text-base text-muted-foreground font-sans">
           Join our beta and get early access to natural-language commands

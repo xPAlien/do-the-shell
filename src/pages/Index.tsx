@@ -18,40 +18,52 @@ const Index = () => {
         
         <div className="relative z-10 max-w-6xl mx-auto text-center mb-12">
           <div className="mb-12 flex justify-center group">
-            <img 
-              src={doLogo} 
-              alt="do>" 
-              className="h-32 w-auto transition-all duration-300 drop-shadow-[0_0_20px_hsl(var(--cybermint)/0.3)] group-hover:drop-shadow-[0_0_30px_hsl(var(--cybermint)/0.5)]" 
-            />
+            <h1 className="text-6xl md:text-7xl font-display font-bold">
+              <span className="text-primary drop-shadow-[0_0_20px_hsl(var(--cybermint)/0.4)] animate-pulse">JustDo</span>
+              <span className="text-muted-foreground">.sh</span>
+            </h1>
           </div>
           
-          <h1 className="text-5xl md:text-7xl font-display font-bold text-foreground mb-8 tracking-tight leading-tight">
+          <h2 className="text-4xl md:text-6xl font-display font-bold text-foreground mb-8 tracking-tight leading-tight">
             Stop Guessing.<br />
             <span className="text-primary">Just Do.</span>
-          </h1>
+          </h2>
           
           <p className="text-lg md:text-xl text-muted-foreground mb-16 max-w-xl mx-auto font-sans">
-            AI that understands your command line.
+            AI that gets your command line.
           </p>
 
-          <div className="flex flex-wrap gap-4 justify-center mb-20">
-            <Button 
-              size="lg" 
-              className="bg-primary text-primary-foreground hover:bg-primary/90 font-display px-8 rounded-sm shadow-[0_0_20px_hsl(var(--cybermint)/0.2)] hover:shadow-[0_0_30px_hsl(var(--cybermint)/0.3)] transition-all"
-            >
-              Try Demo
-            </Button>
-            <Button 
-              size="lg" 
-              variant="outline" 
-              className="border-border hover:border-primary/30 hover:bg-primary/5 font-display px-8 rounded-sm industrial-border"
-            >
-              <Github className="mr-2 h-5 w-5" />
-              View GitHub
-            </Button>
+          <div className="flex flex-col items-center gap-4 mb-20">
+            <div className="flex flex-wrap gap-4 justify-center">
+              <Button 
+                size="lg" 
+                onClick={() => {
+                  document.getElementById('terminal-demo')?.scrollIntoView({ 
+                    behavior: 'smooth',
+                    block: 'center'
+                  });
+                }}
+                className="bg-primary text-primary-foreground hover:bg-primary/90 font-display px-8 rounded-sm shadow-[0_0_20px_hsl(var(--cybermint)/0.2)] hover:shadow-[0_0_30px_hsl(var(--cybermint)/0.3)] transition-all"
+              >
+                Try It Now
+              </Button>
+              <Button 
+                size="lg" 
+                variant="outline" 
+                className="border-border hover:border-primary/30 hover:bg-primary/5 font-display px-8 rounded-sm industrial-border"
+              >
+                <Github className="mr-2 h-5 w-5" />
+                View GitHub
+              </Button>
+            </div>
+            <code className="text-xs text-muted-foreground font-mono">
+              curl justdo.sh | bash
+            </code>
           </div>
 
-          <TerminalWindow />
+          <div id="terminal-demo">
+            <TerminalWindow />
+          </div>
           
           <BetaSignup />
         </div>
@@ -75,8 +87,8 @@ const Index = () => {
             />
             <FeatureCard
               icon={Brain}
-              title="Cross-Platform Resolver"
-              description="Works seamlessly across Linux, macOS, and Windows. One tool, all platforms."
+              title="Cross-Platform Translator"
+              description="Converts Windows ↔ Linux commands. Works seamlessly across all platforms."
             />
             <FeatureCard
               icon={Shield}
@@ -100,14 +112,14 @@ const Index = () => {
           <div className="grid md:grid-cols-2 gap-6 max-w-4xl mx-auto">
             <FeatureCard
               icon={MessageSquare}
-              title="Natural-Language Commands"
-              description="Type what you want in plain English. AI translates it into precise shell commands."
+              title="AI Command Builder"
+              description="Turns plain language into safe shell tasks. Type what you want in plain English."
               isPremium
             />
             <FeatureCard
               icon={Lock}
-              title="Secure Preview Execution"
-              description="AI-powered safety checks and sandboxed previews for risky operations."
+              title="Secure Preview Mode"
+              description="Approve before execute. AI-powered safety checks for risky operations."
               isPremium
             />
           </div>
@@ -212,7 +224,8 @@ const Index = () => {
           </div>
           
           <div className="mt-10 text-center text-xs text-muted-foreground font-sans">
-            <p>&copy; 2025 do. All rights reserved.</p>
+            <p className="mb-2">Made by humans, trained by terminals.</p>
+            <p>&copy; 2025 JustDo.sh. All rights reserved.</p>
           </div>
         </div>
       </footer>
