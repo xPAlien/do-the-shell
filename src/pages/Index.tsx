@@ -53,9 +53,16 @@ const Index = () => {
                 size="lg" 
                 variant="outline" 
                 className="border-border hover:border-primary/30 hover:bg-primary/5 font-display px-8 rounded-sm industrial-border"
+                asChild
               >
-                <Github className="mr-2 h-5 w-5" />
-                View GitHub
+                <a 
+                  href="https://github.com/xPAlien/do-the-shell"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <Github className="mr-2 h-5 w-5" />
+                  View GitHub
+                </a>
               </Button>
             </div>
             <code className="text-xs text-muted-foreground font-mono">
@@ -192,7 +199,7 @@ const Index = () => {
             
             <div className="flex gap-6 items-center">
               <a 
-                href="https://github.com" 
+                href="https://github.com/xPAlien/do-the-shell" 
                 target="_blank" 
                 rel="noopener noreferrer"
                 className="text-muted-foreground hover:text-primary transition-all duration-300 hover:drop-shadow-[0_0_10px_hsl(var(--cybermint)/0.5)]"
