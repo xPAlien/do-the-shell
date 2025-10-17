@@ -56,18 +56,6 @@ It's for those who value action over friction — command, build, deploy — *ju
 
 ---
 
-## 🖼️ Branding
-Your new logo represents **forward motion** and **clean intent** —  
-a modern command prompt symbol wrapped in a mint glow of innovation.  
-
-- Font style: **Bold geometric sans-serif**  
-- Color palette:  
-  - Dark gray (#2A2A2A)  
-  - Cybermint green (#3EE8B2)  
-- Background: Transparent  
-
----
-
 ## 👨‍💻 Contributing
 We welcome contributions!  
 Fork the repo, create a feature branch, and submit a PR.  
