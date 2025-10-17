@@ -1,9 +1,10 @@
-import { Zap, Shield, Brain, MessageSquare, Lock, Github } from "lucide-react";
+import { Zap, Shield, Brain, MessageSquare, Lock, Github, FileText } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { TerminalWindow } from "@/components/TerminalWindow";
 import { FeatureCard } from "@/components/FeatureCard";
 import { PricingCard } from "@/components/PricingCard";
 import { BackgroundPattern } from "@/components/BackgroundPattern";
+import { BetaSignup } from "@/components/BetaSignup";
 import doLogo from "@/assets/do-logo.png";
 
 const Index = () => {
@@ -25,12 +26,12 @@ const Index = () => {
           </div>
           
           <h1 className="text-5xl md:text-7xl font-display font-bold text-foreground mb-8 tracking-tight leading-tight">
-            Your AI Command Line<br />
-            <span className="text-primary">Companion</span>
+            Stop Guessing.<br />
+            <span className="text-primary">Just Do.</span>
           </h1>
           
           <p className="text-lg md:text-xl text-muted-foreground mb-16 max-w-xl mx-auto font-sans">
-            Stop memorizing syntax. Just tell it what you need.
+            AI that understands your command line.
           </p>
 
           <div className="flex flex-wrap gap-4 justify-center mb-20">
@@ -51,6 +52,8 @@ const Index = () => {
           </div>
 
           <TerminalWindow />
+          
+          <BetaSignup />
         </div>
       </section>
 
@@ -173,7 +176,7 @@ const Index = () => {
               <span className="text-muted-foreground text-sm font-sans">AI that knows your shell.</span>
             </div>
             
-            <div className="flex gap-6">
+            <div className="flex gap-6 items-center">
               <a 
                 href="https://github.com" 
                 target="_blank" 
@@ -181,6 +184,19 @@ const Index = () => {
                 className="text-muted-foreground hover:text-primary transition-all duration-300 hover:drop-shadow-[0_0_10px_hsl(var(--cybermint)/0.5)]"
               >
                 <Github className="w-5 h-5" />
+              </a>
+              <a 
+                href="#beta-signup" 
+                className="text-sm font-sans text-muted-foreground hover:text-primary transition-colors"
+              >
+                Join Beta
+              </a>
+              <a 
+                href="#docs" 
+                className="text-sm font-sans text-muted-foreground hover:text-primary transition-colors flex items-center gap-1"
+              >
+                <FileText className="w-4 h-4" />
+                Documentation
               </a>
               <a 
                 href="https://twitter.com" 

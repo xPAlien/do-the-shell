@@ -13,6 +13,7 @@ const demoSequence: TerminalLine[] = [
   { type: "command", content: "do ipconfig" },
   { type: "thinking", content: "do is thinking..." },
   { type: "output", content: "→ ifconfig" },
+  { type: "output", content: "lo0: flags=8049<UP,LOOPBACK,RUNNING>" },
 ];
 
 export const TerminalWindow = () => {
