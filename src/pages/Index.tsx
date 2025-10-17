@@ -6,6 +6,7 @@ import { PricingCard } from "@/components/PricingCard";
 import { BackgroundPattern } from "@/components/BackgroundPattern";
 import { BetaSignup } from "@/components/BetaSignup";
 import doLogo from "@/assets/do-logo.png";
+import justdoLogo from "@/assets/justdo-logo.png";
 
 const Index = () => {
   return (
@@ -17,11 +18,12 @@ const Index = () => {
         <div className="absolute inset-0 bg-gradient-to-b from-primary/[0.03] via-transparent to-transparent pointer-events-none"></div>
         
         <div className="relative z-10 max-w-6xl mx-auto text-center mb-12">
-          <div className="mb-12 flex justify-center group">
-            <h1 className="text-6xl md:text-7xl font-display font-bold">
-              <span className="text-primary drop-shadow-[0_0_20px_hsl(var(--cybermint)/0.4)] animate-pulse">JustDo</span>
-              <span className="text-muted-foreground">.sh</span>
-            </h1>
+          <div className="mb-12 flex justify-center">
+            <img 
+              src={justdoLogo} 
+              alt="justdo>" 
+              className="h-20 md:h-28 w-auto drop-shadow-[0_0_30px_hsl(var(--primary)/0.3)] hover:drop-shadow-[0_0_40px_hsl(var(--primary)/0.4)] transition-all"
+            />
           </div>
           
           <h2 className="text-4xl md:text-6xl font-display font-bold text-foreground mb-8 tracking-tight leading-tight">
