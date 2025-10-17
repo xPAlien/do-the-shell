@@ -22,7 +22,8 @@ const Index = () => {
             <img 
               src={justdoLogo} 
               alt="justdo>" 
-              className="h-48 md:h-64 w-auto drop-shadow-[0_0_30px_hsl(var(--primary)/0.3)] hover:drop-shadow-[0_0_40px_hsl(var(--primary)/0.4)] transition-all"
+              className="h-48 md:h-64 w-auto drop-shadow-[0_0_30px_hsl(var(--primary)/0.3)] hover:drop-shadow-[0_0_40px_hsl(var(--primary)/0.4)] transition-all brightness-0 invert"
+              style={{ filter: 'brightness(0) saturate(100%) invert(88%) sepia(24%) saturate(2668%) hue-rotate(101deg) brightness(101%) contrast(97%)' }}
             />
           </div>
           
