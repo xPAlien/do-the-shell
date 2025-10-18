@@ -188,7 +188,27 @@ const Index = () => {
         </div>
       </section>
 
-      {/* Footer */}
+      {/* Enterprise Licensing Section */}
+      <section className="py-20 px-4 relative">
+        <div className="max-w-4xl mx-auto text-center">
+          <div className="border border-primary/20 bg-primary/5 rounded-sm p-12 industrial-border">
+            <h2 className="text-3xl md:text-4xl font-display font-bold text-foreground mb-4">
+              Enterprise Licensing Available
+            </h2>
+            <p className="text-lg text-muted-foreground mb-8 font-sans max-w-2xl mx-auto">
+              Need a more permissive license for your organization? We offer custom commercial licensing options.
+            </p>
+            <Button 
+              size="lg" 
+              className="bg-primary text-primary-foreground hover:bg-primary/90 font-display px-8 rounded-sm shadow-[0_0_20px_hsl(var(--cybermint)/0.2)] hover:shadow-[0_0_30px_hsl(var(--cybermint)/0.3)] transition-all"
+              asChild
+            >
+              <a href="mailto:contact@justdo.sh">Contact Us</a>
+            </Button>
+          </div>
+        </div>
+      </section>
+
       <footer className="border-t border-terminal-border/50 py-16 px-4 relative">
         <div className="max-w-6xl mx-auto">
           <div className="flex flex-col md:flex-row items-center justify-between gap-6">
