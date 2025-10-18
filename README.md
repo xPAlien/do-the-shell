@@ -68,4 +68,8 @@ git push origin feature/your-feature
 ---
 
 ## 📜 License
-This project is licensed under the [MIT License](LICENSE).
+This project is licensed under the [GNU Affero General Public License v3.0 (AGPL-3.0)](LICENSE).
+
+**Enterprise Licensing Available** – Contact us for commercial licensing options under a more permissive license (such as MIT).
+
+**Contributor Agreement** – By contributing to this project, you agree to release all rights to your contributions to the project maintainers.
