@@ -5,7 +5,6 @@ import { FeatureCard } from "@/components/FeatureCard";
 import { PricingCard } from "@/components/PricingCard";
 import { BackgroundPattern } from "@/components/BackgroundPattern";
 import { BetaSignup } from "@/components/BetaSignup";
-import doLogo from "@/assets/do-logo.png";
 import justdoLogo from "@/assets/justdo-logo.png";
 
 const Index = () => {
