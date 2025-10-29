@@ -1,7 +1,6 @@
-<h1>
-  <img src="public/justdo-logo-readme.png" alt="justdo>" width="80%" />
-</h1>
-### _"justdo>"_  
+<div align="center">
+  <img src="public/justdo-logo-readme.png" alt="justdo>" width="50%" />
+</div>
 
 **justdo>** is a minimal, fast, and futuristic command-line interface designed for developers who want to execute, automate, and build — without distractions.  
 This isn't just another shell. It's your streamlined execution layer.
