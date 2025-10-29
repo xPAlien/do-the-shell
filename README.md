@@ -1,4 +1,6 @@
-# ![justdo>](public/justdo-logo-readme.png)  
+<h1>
+  <img src="public/justdo-logo-readme.png" alt="justdo>" width="80%" />
+</h1>
 ### _"justdo>"_  
 
 **justdo>** is a minimal, fast, and futuristic command-line interface designed for developers who want to execute, automate, and build — without distractions.  
