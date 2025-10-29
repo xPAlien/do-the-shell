@@ -51,9 +51,33 @@ resolve() {
   if [[ "$OS" == "Linux" ]]; then echo "${FIX_LINUX[$c]}"; fi
 }
 
+validate_command() {
+  local cmd="$1"
+  # Reject commands with shell metacharacters that could enable injection
+  if [[ "$cmd" =~ [\;\|\&\$\`\<\>] ]] || [[ "$cmd" =~ \$\( ]]; then
+    echo "❌ Invalid characters detected. Commands cannot contain: ; | & $ \` < > \$()"
+    return 1
+  fi
+  # Reject commands that are too long
+  if [[ ${#cmd} -gt 200 ]]; then
+    echo "❌ Command too long (max 200 characters)"
+    return 1
+  fi
+  return 0
+}
+
 teach_command() {
   local wrong="$1"
   local correct="$2"
+  
+  # Validate both the wrong command and the correct command
+  if ! validate_command "$wrong"; then
+    exit 1
+  fi
+  if ! validate_command "$correct"; then
+    exit 1
+  fi
+  
   echo "$wrong=$correct" >> "$TEACH_FILE"
   echo "✅ Thanks! I'll remember that."
 }
@@ -127,8 +151,15 @@ if [[ -n "$FIX" ]]; then
 
   approved="no"
   if [[ "$ans" =~ ^[Yy]$ ]]; then
+    # Validate the command before executing to prevent injection
+    if ! validate_command "$FIX"; then
+      echo "❌ Unsafe command detected. Please review your teach aliases."
+      log_event "$CMD" "$FIX" "rejected"
+      exit 1
+    fi
     approved="yes"
-    eval "$FIX $*"
+    # Use command builtin instead of eval for safer execution
+    command $FIX "$@"
   fi
 
   log_event "$CMD" "$FIX" "$approved"
