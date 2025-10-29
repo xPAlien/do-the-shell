@@ -12,27 +12,6 @@ export const BackgroundPattern = () => {
           </defs>
           <rect width="100%" height="100%" fill="url(#grid)" />
         </svg>
-
-        {/* ASCII art elements */}
-        <div className="absolute top-20 left-10 font-mono text-xs text-primary">
-          {`┌─────┐
-│ >>> │
-└─────┘`}
-        </div>
-
-        <div className="absolute bottom-40 right-20 font-mono text-xs text-primary">
-          {`╔═══╗
-║ do║
-╚═══╝`}
-        </div>
-
-        <div className="absolute top-1/2 left-1/4 font-mono text-xs text-primary">
-          {`→ → →`}
-        </div>
-
-        <div className="absolute top-1/3 right-1/3 font-mono text-xs text-primary">
-          {`{ AI }`}
-        </div>
       </div>
     </div>
   );
