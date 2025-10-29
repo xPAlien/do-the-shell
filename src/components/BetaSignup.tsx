@@ -26,8 +26,8 @@ export const BetaSignup = () => {
       await new Promise(resolve => setTimeout(resolve, 1000));
       
       toast({
-        title: "Welcome to the beta! 🎉",
-        description: "Check your email for next steps.",
+        title: "Coming Soon! 🚀",
+        description: "Beta signups aren't active yet, but we'll launch soon. Stay tuned!",
       });
       
       setEmail("");
