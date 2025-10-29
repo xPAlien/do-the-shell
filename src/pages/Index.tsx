@@ -66,7 +66,7 @@ const Index = () => {
               </Button>
             </div>
             <code className="text-xs text-muted-foreground font-mono">
-              curl justdo.sh | bash
+              curl -s https://justdo.sh/install.sh | bash
             </code>
           </div>
 
@@ -78,8 +78,70 @@ const Index = () => {
         </div>
       </section>
 
-      {/* Core Features Section */}
+      {/* Installation Section */}
       <section className="py-24 px-4 bg-muted/20 relative">
+        <div className="max-w-4xl mx-auto">
+          <div className="text-center mb-12">
+            <h2 className="text-4xl md:text-5xl font-display font-bold text-foreground mb-5">
+              Installation
+            </h2>
+            <p className="text-base text-muted-foreground font-sans">Get started in seconds. No dependencies required.</p>
+          </div>
+
+          <div className="bg-terminal-bg border border-primary/20 rounded-sm p-8 industrial-border mb-8">
+            <div className="flex items-center gap-2 mb-4">
+              <div className="flex gap-1.5">
+                <div className="w-3 h-3 rounded-full bg-red-500"></div>
+                <div className="w-3 h-3 rounded-full bg-yellow-500"></div>
+                <div className="w-3 h-3 rounded-full bg-green-500"></div>
+              </div>
+              <span className="text-xs text-muted-foreground font-mono ml-2">~/terminal</span>
+            </div>
+            
+            <div className="font-mono text-sm">
+              <div className="text-primary mb-2">$ curl -s https://justdo.sh/install.sh | bash</div>
+              <div className="text-muted-foreground text-xs mt-4">
+                Downloading JustDo.sh CLI...<br />
+                ✅ Installed! Try: justdo ipconfig
+              </div>
+            </div>
+          </div>
+
+          <div className="grid md:grid-cols-2 gap-6 mb-8">
+            <div className="bg-background border border-border rounded-sm p-6 industrial-border">
+              <h3 className="font-display font-bold text-lg mb-3 text-foreground">Quick Start</h3>
+              <div className="font-mono text-sm space-y-2 text-muted-foreground">
+                <div><span className="text-primary">$</span> justdo ipconfig</div>
+                <div><span className="text-primary">$</span> justdo analytics on</div>
+                <div><span className="text-primary">$</span> justdo stats</div>
+              </div>
+            </div>
+
+            <div className="bg-background border border-border rounded-sm p-6 industrial-border">
+              <h3 className="font-display font-bold text-lg mb-3 text-foreground">Teach Mode</h3>
+              <div className="font-mono text-sm space-y-2 text-muted-foreground">
+                <div><span className="text-primary">$</span> justdo teach ipconfig "ip addr"</div>
+                <div className="text-xs mt-2">✅ Thanks! I'll remember that.</div>
+              </div>
+            </div>
+          </div>
+
+          <div className="text-center">
+            <Button 
+              variant="outline" 
+              className="border-border hover:border-primary/30 hover:bg-primary/5 font-display rounded-sm industrial-border"
+              asChild
+            >
+              <a href="/bin/justdo" download>
+                Download CLI Directly
+              </a>
+            </Button>
+          </div>
+        </div>
+      </section>
+
+      {/* Core Features Section */}
+      <section className="py-24 px-4 bg-background relative">
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-20">
             <h2 className="text-4xl md:text-5xl font-display font-bold text-foreground mb-5">

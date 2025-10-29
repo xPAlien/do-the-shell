@@ -1,0 +1,141 @@
+#!/usr/bin/env bash
+# JustDo.sh — v1.0
+# Features:
+# ✅ Command correction for known tools
+# ✅ Friendly UX
+# ✅ Teach Mode (user-trained aliases)
+# ✅ Local analytics + stats
+# ✅ Brand voice alignment
+
+CMD="$1"
+shift || true
+
+OS="$(uname -s)"
+JUSTDO_HOME="$HOME/.justdo"
+LOG_FILE="$JUSTDO_HOME/logs.txt"
+CONFIG_FILE="$JUSTDO_HOME/config.txt"
+TEACH_FILE="$JUSTDO_HOME/teach.db"
+
+mkdir -p "$JUSTDO_HOME"
+touch "$LOG_FILE"
+touch "$TEACH_FILE"
+
+analytics_enabled() {
+  [[ -f "$CONFIG_FILE" ]] && grep -q "analytics=on" "$CONFIG_FILE"
+}
+
+log_event() {
+  [[ ! "$(analytics_enabled)" ]] && return
+  printf "%s | %s | user_input=\"%s\" | suggestion=\"%s\" | approved=\"%s\"\n" \
+    "$(date '+%Y-%m-%d %H:%M:%S')" "$OS" "$1" "$2" "$3" >> "$LOG_FILE"
+}
+
+# Built-in corrections
+declare -A FIX_MACOS=(
+  ["ipconfig"]="ifconfig"
+)
+declare -A FIX_LINUX=(
+  ["ipconfig"]="ip a"
+)
+
+resolve() {
+  local c="$1"
+
+  # first: user-learned matches
+  local taught
+  taught="$(grep "^$c=" "$TEACH_FILE" | cut -d'=' -f2)"
+  [[ -n "$taught" ]] && { echo "$taught"; return; }
+
+  # fallback to OS rules
+  if [[ "$OS" == "Darwin" ]]; then echo "${FIX_MACOS[$c]}"; fi
+  if [[ "$OS" == "Linux" ]]; then echo "${FIX_LINUX[$c]}"; fi
+}
+
+teach_command() {
+  local wrong="$1"
+  local correct="$2"
+  echo "$wrong=$correct" >> "$TEACH_FILE"
+  echo "✅ Thanks! I'll remember that."
+}
+
+print_stats() {
+  if [[ ! -s "$LOG_FILE" ]]; then
+    echo "📊 No usage stats yet — try using justdo a bit more!"
+    exit 0
+  fi
+
+  total=$(wc -l < "$LOG_FILE" | tr -d '[:space:]')
+  corrected=$(grep -c 'suggestion="[^"]"' "$LOG_FILE")
+  executed=$(grep -c 'approved="yes"' "$LOG_FILE")
+
+  echo "📊 JustDo.sh Usage Stats"
+  echo "────────────────────────"
+  echo "Total commands: $total"
+  [[ "$total" -gt 0 ]] && echo "Commands corrected: $corrected ($((100*corrected/total))%)"
+  [[ "$corrected" -gt 0 ]] && echo "Commands run after fix: $executed ($((100*executed/corrected))%)"
+  echo
+
+  echo "📈 Top commands:"
+  awk -F'user_input="' '{print $2}' "$LOG_FILE" | cut -d'"' -f1 |
+    sort | uniq -c | sort -nr | head -5 | sed 's/^/  /'
+  echo
+
+  [[ "$(analytics_enabled)" ]] && echo "Analytics: ON" || echo "Analytics: OFF"
+  echo "Log: $LOG_FILE"
+  exit 0
+}
+
+case "$CMD" in
+  stats) print_stats ;;
+  analytics)
+    case "$1" in
+      on)  echo "analytics=on" > "$CONFIG_FILE";  echo "✅ Analytics enabled" ;;
+      off) rm -f "$CONFIG_FILE"; echo "🛑 Analytics disabled" ;;
+      status) [[ "$(analytics_enabled)" ]] && echo "📊 Analytics: ON" || echo "📊 Analytics: OFF" ;;
+      *) echo "Usage: justdo analytics [on|off|status]" ;;
+    esac
+    exit 0
+    ;;
+  teach)
+    wrong="$1"
+    shift
+    if [[ -z "$wrong" ]]; then
+      echo "Usage: justdo teach <wrong_command> <correct_command>"
+      exit 1
+    fi
+    if [[ -z "$1" ]]; then
+      read -p "What should '$wrong' run instead?: " correct
+    else
+      correct="$*"
+    fi
+    teach_command "$wrong" "$correct"
+    exit 0
+    ;;
+esac
+
+if [[ -z "$CMD" ]]; then
+  echo "Usage: justdo <command> [args]"
+  exit 1
+fi
+
+FIX="$(resolve "$CMD")"
+
+if [[ -n "$FIX" ]]; then
+  echo "justdo is thinking..."
+  echo "Fix suggestion: $FIX $*"
+  read -p "Run this? (y/N): " ans
+
+  approved="no"
+  if [[ "$ans" =~ ^[Yy]$ ]]; then
+    approved="yes"
+    eval "$FIX $*"
+  fi
+
+  log_event "$CMD" "$FIX" "$approved"
+  exit 0
+fi
+
+log_event "$CMD" "" "no"
+echo "🤔 justdo doesn't know that one yet."
+echo "Help me learn: justdo teach $CMD <correct_command>"
+exit 1

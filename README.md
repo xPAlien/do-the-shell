@@ -17,18 +17,19 @@ This isn't just another shell. It's your streamlined execution layer.
 
 ## 🛠️ Installation
 
+### Quick Install (Recommended)
 ```bash
-# Clone the repository
-git clone https://github.com/xPAlien/do-the-shell.git
+curl -s https://justdo.sh/install.sh | bash
+```
 
-# Enter the project directory
-cd do-the-shell
+### Manual Installation
+```bash
+# Download the CLI
+curl -s https://justdo.sh/bin/justdo -o justdo
+chmod +x justdo
 
-# Install dependencies
-npm install  # or yarn install
-
-# Run it locally
-npm start
+# Move to your PATH (requires sudo)
+sudo mv justdo /usr/local/bin/
 ```
 
 ---
@@ -36,14 +37,18 @@ npm start
 ## 💡 Usage
 
 ```bash
-# Launch justdo>
-justdo>
+# Fix common command mistakes
+justdo ipconfig
+# → Suggests: ifconfig (macOS) or ip a (Linux)
 
-# Execute commands seamlessly
-justdo> run build
+# Enable analytics to track your usage
+justdo analytics on
 
-# Automate with script chaining
-justdo> deploy --prod && notify
+# Teach it your custom commands
+justdo teach ipconfig "ip addr"
+
+# View your command stats
+justdo stats
 ```
 
 ---
