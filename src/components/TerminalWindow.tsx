@@ -10,8 +10,8 @@ const demoSequence: TerminalLine[] = [
   { type: "command", content: "ipconfig" },
   { type: "error", content: "bash: ipconfig: command not found" },
   { type: "prompt", content: "$" },
-  { type: "command", content: "do ipconfig" },
-  { type: "thinking", content: "do is thinking..." },
+  { type: "command", content: "justdo ipconfig" },
+  { type: "thinking", content: "justdo is thinking..." },
   { type: "output", content: "→ ifconfig" },
   { type: "output", content: "lo0: flags=8049<UP,LOOPBACK,RUNNING>" },
 ];
@@ -64,12 +64,12 @@ export const TerminalWindow = () => {
           setLines((prev) => [
             ...prev,
             { type: "error", content: "bash: ipconfig: command not found" },
-            { type: "output", content: "💡 Try: do ipconfig" }
+            { type: "output", content: "💡 Try: justdo ipconfig" }
           ]);
-        } else if (command === "do ipconfig") {
+        } else if (command === "justdo ipconfig") {
           setLines((prev) => [
             ...prev,
-            { type: "thinking", content: "do is thinking..." }
+            { type: "thinking", content: "justdo is thinking..." }
           ]);
           setTimeout(() => {
             setLines((prev) => [
@@ -78,21 +78,21 @@ export const TerminalWindow = () => {
               { type: "output", content: "lo0: flags=8049<UP,LOOPBACK,RUNNING>" }
             ]);
           }, 1000);
-        } else if (command.startsWith("do ")) {
+        } else if (command.startsWith("justdo ")) {
           setLines((prev) => [
             ...prev,
-            { type: "thinking", content: "do is thinking..." }
+            { type: "thinking", content: "justdo is thinking..." }
           ]);
           setTimeout(() => {
             setLines((prev) => [
               ...prev,
-              { type: "output", content: `✓ Understood: ${command.substring(3)}` }
+              { type: "output", content: `✓ Understood: ${command.substring(7)}` }
             ]);
           }, 1000);
         } else {
           setLines((prev) => [
             ...prev,
-            { type: "output", content: `Try prefixing with 'do' for AI assistance` }
+            { type: "output", content: `Try prefixing with 'justdo' for AI assistance` }
           ]);
         }
       }, 100);
@@ -155,7 +155,7 @@ export const TerminalWindow = () => {
                 onChange={(e) => setUserInput(e.target.value)}
                 onKeyDown={handleCommand}
                 className="flex-1 bg-transparent border-none outline-none text-foreground ml-1 font-mono"
-                placeholder="Try typing 'ipconfig' or 'do ipconfig'"
+                placeholder="Try typing 'ipconfig' or 'justdo ipconfig'"
                 autoFocus
               />
             </div>
